@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+  php-apache:
+    build: 
+      context: .
+    container_name: php-apache
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "8000:80"
+    depends_on: 
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: 
+      MYSQL_DATABASE: 
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - ""  
+    expose: 
+      - ""
+
+volumes:
+  db_data:
